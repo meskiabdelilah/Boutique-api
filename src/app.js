@@ -3,6 +3,7 @@ import productRouter from './routes/product.routes.js';
 import errorHandler from './middlewares/error.middleware.js';
 
 const app = express();
+app.use(express.json());
 
 app.get("/api/health", (req ,res)=> {
     res.status(200).json({

@@ -41,4 +41,23 @@ async function getProductById(req, res, next) {
   }
 }
 
-export { getProducts, getProductById };
+async function createProduct(req, res, next) {
+    try {
+        const {name, description, priceCents, available} = req.body;
+        const product = await Product.create({
+            name,
+            description,
+            priceCents,
+            available
+        });
+        return res.status(201).json({
+            success: true,
+            data: product
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+export { getProducts, getProductById, createProduct };
